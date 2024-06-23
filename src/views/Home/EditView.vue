@@ -31,7 +31,6 @@
 
     <h2 v-if="details" class="text-2xl font-bold text-start"> {{ title }} {{ details.ip_address }}</h2>
     <form v-if="details" @submit.prevent="ipEdit(details)">
-        <pre>{{ details }}</pre>
         <div class="grid gap-6 mb-6 md:grid-cols-2">
             <div>
                 <label for="label" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Label</label>
