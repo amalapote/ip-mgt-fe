@@ -12,12 +12,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'login',
-      component: Login
+      component: Login,
+      meta: { requiresAuth: false },
     },
     {
       path: '/register',
       name: 'register',
-      component: RegisterView
+      component: RegisterView,
+      meta: { requiresAuth: false },
     },
   {
       path: '/admin',
@@ -28,27 +30,45 @@ const router = createRouter({
               path: 'home',
               name: 'admin.home',
               component: HomeView,
+              meta: { requiresAuth: true },
           },
           {
               path: 'log',
               name: 'admin.log',
               component: LogView,
+              meta: { requiresAuth: true },
           },
           {
               path: 'edit',
               name: 'admin.edit',
               component: EditView,
+              meta: { requiresAuth: true },
           },
       ]
   },
   ]
 })
 
-// GOOD
-router.beforeEach((to, from, next) => {
-    let test = localStorage.getItem('access') === null ? false : true
-    if (to.name !== 'login' && !test) next({ name: 'login' })
-    else next()
+// // GOOD
+// router.beforeEach((to, from, next) => {
+//     let test = localStorage.getItem('access') === null ? false : true
+//     if (to.name !== 'login' && !test) next({ name: 'login' })
+//     else next()
+// })
+
+router.beforeEach((to, from) => {
+    // instead of having to check every route record with
+    // to.matched.some(record => record.meta.requiresAuth)
+    let isLoggedIn = localStorage.getItem('access') === null ? false : true
+    if (to.meta.requiresAuth && !isLoggedIn) {
+        // this route requires auth, check if logged in
+        // if not, redirect to login page.
+        return {
+            path: '/',
+            // save the location we were at to come back later
+            query: { redirect: to.fullPath },
+        }
+    }
 })
 
 export default router

@@ -147,6 +147,7 @@ const toggleVisibility = () => {
 const toggleEditVisibility = (item) => {
     itemId.value = item;
     isVisibleEdit.value = true
+    isVisible.value = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
