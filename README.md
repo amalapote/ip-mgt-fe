@@ -8,6 +8,11 @@ This template should help get you started developing with Vue 3 in Vite.
 ```env
 VITE_APP_BASE_URL_ENDPOINT="http://localhost"
 ```
+
+## Sample Loom Video
+```
+https://www.loom.com/share/5ce6ba916b554d74b3b455056da78441?sid=b57d5ac7-d92e-4716-9555-8354c7c470e5
+```
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
